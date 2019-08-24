@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[TorchShip logs]]></title><description><![CDATA[Bootstrapping SAAS and such solo.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>RSS for Node</generator><lastBuildDate>Sat, 24 Aug 2019 00:40:37 GMT</lastBuildDate><item><title><![CDATA[How I built a Chrome extension with Elm]]></title><description><![CDATA[First let’s start with a bit of background. I got a job as an Elm developer winter 2018. At the time I didn’t know Elm so I had to learn in…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/elm-chrome-ext/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/elm-chrome-ext/</guid><pubDate>Thu, 22 Aug 2019 21:28:24 GMT</pubDate><content:encoded>&lt;p&gt;First let’s start with a bit of background.&lt;/p&gt;
+&lt;p&gt;I got a job as an Elm developer winter 2018.&lt;/p&gt;
+&lt;p&gt;At the time I didn’t know Elm so I had to learn in a hurry.&lt;/p&gt;
+&lt;p&gt;I had the idea for a chrome extension than can update the images I use on a website or app. But to go along with the chrome extension I had to build a whole dashboard (which I’ll write more about that later).&lt;/p&gt;
+&lt;p&gt;Over the next weeks and months I built and rebuilt the app I call &lt;a href=&quot;https://tryvertol.com&quot;&gt;Vertol&lt;/a&gt;.
+I learned how to build an Elm application by reverse engineering our app at work, as well as looking over &lt;a href=&quot;https://github.com/rtfeldman/elm-spa-example&quot;&gt;Richard Feldman’s SPA&lt;/a&gt; app  and a number of other tutorials.&lt;/p&gt;
+&lt;p&gt;Researching “how to build a chrome extension in Elm” didn’t yield much besides ”&lt;a href=&quot;https://github.com/danneu/elm-chrome-extension&quot;&gt;danneu/elm-chrome-extension: a chrome extension composed of three elm apps that synchronize a single model&lt;/a&gt;”. Looking at how &lt;a href=&quot;https://github.com/danneu&quot;&gt;danneu&lt;/a&gt; structured their extension helped a lot with getting something set up. I took a lot of inspiration from danneu. I ended up needing all 3 main components of a chrome extension. A background script, popup script and content script. I have seperate webpack configs for the dashboard and the extension.&lt;/p&gt;
+&lt;p&gt;I’m trying to keep all the business logic in Elm, and pass messages out through ports as needed. It’s still very much a work in progress but I’m pretty happy with how things have turned out.&lt;/p&gt;
+&lt;p&gt;If you’re familiar with ports, it’s not too difficult to get working. Following a similar set up as &lt;a href=&quot;https://www.youtube.com/watch?v=P3pL85n9_5s&quot;&gt;Murphy Randle’s pattern&lt;/a&gt; of working with ports, I was able to connect the chrome runtime with the different parts of the extension. It seems to “scale” pretty well. So everything you already know about ports makes working with Chrome a piece of cake. It’s not too dissimilar to Elm’s ports.&lt;/p&gt;
+&lt;p&gt;My directory structure is a little different than danneu though.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/4aa5da3b64cd77046396541371d7f367/50bbc/extension.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 155.82010582010582%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAfCAYAAADnTu3OAAAACXBIWXMAABYlAAAWJQFJUiTwAAADn0lEQVRIx52VSXPbRhCFBwsHO7gBIHYQ3CXKTqjYsrM4cZy4klgHV6p8cM75/7/hpXsIRirLpkkduoYAgQ8z/V53C8uyMG2nuN5d43JzAU3TIIQ4Gm3bYjweYz6fq3U0HGJIwdf0v4ZBf4AoSzDKE9iWDfEVqO04kNJCEARq5fA8D2HYp3fpAdfsQRYenJsYdZrBdSzwfVPXYGjiQfB/WgfXu9W1LVjShHB7Ao4tMR6EePbihrbdoi4yGN2DJgF6OsPvonc/DKGe7fsuAo9OZ9FN37UQDUNklzvUlM+2ypHGY4oRXMvcQ4xPQJ+EZWoqhMqJbSMMfLhXP6OYr1HmKZqmUcln0fgZFusUwRRQSknAAEkSY/PdDbI8P+XF40BWTJA4F57ElI47JQtUZYksy1AUxf9xbJdBu7oD9sOQLnT8UAg0sYs0LzGlY1dVpaBRFKn4LKz7SPn2/R7Y4yN3wA9vBWa1g3AQq3tjgoxG4+PH7ID563d7HzqWxLAfkrd0vLmmL00cyucEEzp6XRbI0wmSOFK/rZ6pPMh+1Lsw9D2wenNLPjQFPPJhPArJpDpuXwpcLXxSukQ8DOA7tHuyFa998hlbg20iOxvxKukee7H5jYChZJdL9bJBovzxo45N42G9XCEa+KoSlNe0vckVgMK6t1r3gbxV9trQc+HPlwje/YOUCn65WmJGPjRNo/PhXck9iO7I5a+3d6L0fR8m5Wn4/TOkUYyyqpX6J3nvIMoBKDugT8lvf3mFhHbIdjFN8yxgcR/o+x7SNMfT3XOkkwlmsxkMw3g8MCDgpKhw9eKVAnKzVNXzGKBFPvQ8ag6uTULEyKmWV6uVWrkTc1fWdf08oOv6CFxSKhKI4glKNjQBOZccR4//OaAfDPDvXwK7bQIeC2d1mAc5JB9yPwyf/4l8vqGOnZNI/uOBbGzPcTG6IUGWa7R1rXLHYnHzdWgoHRrtaUAaMD29h+zbGtW6RNvMVKUsFgulNlsoTdPTus1+BNCUMxx8fC1w2Too6znqqlSj8Zwjl7+/P+zQhqS2NJ5XGFNXbqjsWOEkSc4Sx6/nhxzasAko2m/g51PUeaZgJY2Ao/770kzhHErTQrMrML2oaIdT1fZrEudRQ2oPlIieEGhRYda0yMk6PEoHg8H5QBbFNCR2LzNU0yHyrFS74wrhsmPLsC9d11U2+koX2gN108bfPwlczAKyzBbr9UpZ5mCb7XaLzWajapzT8SXgf6UQudJYyWvhAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;directory structure&quot;
+        title=&quot;directory structure&quot;
+        src=&quot;/static/4aa5da3b64cd77046396541371d7f367/b9e4f/extension.png&quot;
+        srcset=&quot;/static/4aa5da3b64cd77046396541371d7f367/cf440/extension.png 148w,
+/static/4aa5da3b64cd77046396541371d7f367/d2d38/extension.png 295w,
+/static/4aa5da3b64cd77046396541371d7f367/b9e4f/extension.png 590w,
+/static/4aa5da3b64cd77046396541371d7f367/50bbc/extension.png 756w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;code class=&quot;language-text&quot;&gt;Main.elm&lt;/code&gt; you see is for the dashboard application.&lt;/p&gt;
+&lt;p&gt;The source code for the chrome extension shares code with Vertol’s dashboard. So to make things easy I just have the whole source for the extension inside the &lt;code class=&quot;language-text&quot;&gt;src&lt;/code&gt; folder, &lt;code class=&quot;language-text&quot;&gt;manifest.json&lt;/code&gt; and all, and I just simply &lt;code class=&quot;language-text&quot;&gt;gitignore&lt;/code&gt; the compiled output.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;package.json
+&amp;quot;build-ext-prod&amp;quot;: &amp;quot;webpack --config config/webpack.ext.js &amp;amp;&amp;amp; npm run zip-ext&amp;quot;,
+&amp;quot;zip-ext&amp;quot;: &amp;quot;zip -r vertol.zip src/extension&amp;quot;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// webpack.ext.js config 
+ entry: {
+    popup: paths.extPopupJs,
+    bg: paths.extBGJS,
+    content: paths.extContentJS,
+  },
+
+  output: {
+    pathinfo: true,
+    // The build folder.
+    path: paths.appSrc,
+    filename: &amp;#39;extension/[name]/[name].bundle.js&amp;#39;,
+    publicPath: publicPath,
+    chunkFilename: &amp;#39;[name].bundle.js&amp;#39;,
+    ...more config
+  },&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then a build script &lt;code class=&quot;language-text&quot;&gt;npm run build-ext-prod&lt;/code&gt; packages it so it’s ready to load in a browser.&lt;/p&gt;
+&lt;p&gt;I’m including the source code as a gist because the whole source is private for now. &lt;/p&gt;
+&lt;h4&gt;How the extension is built:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;src/extension/&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://gist.github.com/imdwit/e9ac44f6341460ee24262c801399254c&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;/bg/bg.js&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;handles connecting the &lt;code class=&quot;language-text&quot;&gt;Background.elm&lt;/code&gt; to the chrome runtime&lt;/li&gt;
+&lt;li&gt;adds images to the “staging” area passed to it from the content script&lt;/li&gt;
+&lt;li&gt;“seeds” assets to the content script when a user has images in the “staging” area&lt;/li&gt;
+&lt;li&gt;requests a signed url for uploading to s3&lt;/li&gt;
+&lt;li&gt;coordinates injecting the content script&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://gist.github.com/imdwit/9ae109eb3a4a57f73fe5c7a9bbc4700f&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;/popup/init.popup.js&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;connects the Popup to the the background script&lt;/li&gt;
+&lt;li&gt;handles log in&lt;/li&gt;
+&lt;li&gt;sets up message handlers to connect the &lt;code class=&quot;language-text&quot;&gt;Popup.elm&lt;/code&gt; model to the chrome runtime&lt;/li&gt;
+&lt;li&gt;when a user opens the popup from the chrome extension it asks for the &lt;code class=&quot;language-text&quot;&gt;Popup&lt;/code&gt; model from &lt;code class=&quot;language-text&quot;&gt;Background.elm&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://gist.github.com/imdwit/5e6f28fdccf45bbffe21a2e97014506b&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;/content/content.js&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;responsible for injecting some css and adding event handlers to enable drag and drop of new images&lt;/li&gt;
+&lt;li&gt;when an image is selected it is base64 encoded and passed to &lt;code class=&quot;language-text&quot;&gt;Background&lt;/code&gt; to cache in what I call a ‘staging’ area&lt;/li&gt;
+&lt;li&gt;when a user hits save the image is uploaded to s3 and updated ion the DB&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://gist.github.com/imdwit/24e3e48c8a8d31bcfaba4dfb2e43c2e2&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;src/Background.elm&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;Background.elm&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;bg.js&lt;/code&gt; are the brain, it persists the state for Popup.model, and handles the xhr requests. Passing messages back and forth between the popup, as well as the content scripts. Im taking advantage of Elm’s &lt;code class=&quot;language-text&quot;&gt;Platform.worker&lt;/code&gt; since there’s no DOM.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;-- Background model
+type alias Model =
+    { popUp : PopUp.Model
+    , hostname : String
+    , projects : List Project
+    , staging : Dict String Asset.Preview
+    }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://gist.github.com/imdwit/afc9c0bd03254cb1605db6c61e5652a7&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;src/Popup.elm&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Popup lets you log in (more features coming soon), and passes that data to background, so it can check if you own this site/app to enable the content scripts.
+Being that chrome extension popups are effectively stateless, every time you open the popup it has to reinit the app. So storing the state of &lt;code class=&quot;language-text&quot;&gt;Popup&lt;/code&gt;’s model in &lt;code class=&quot;language-text&quot;&gt;Background&lt;/code&gt; makes it super simple to pass the model in as flags. When Popups model changes, it gets passed to Background so the next time the popup is open it’s initialized with the right state.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;After you login and it registers the fact that the website you’re on is one of your projects. The content scripts wire up the event handlers for updating your images. It registers drop events on the &lt;code class=&quot;language-text&quot;&gt;&amp;lt;img/&amp;gt;&lt;/code&gt; tags to enable drag and drop. When an image file is selected it is then base64 encoded and passed to &lt;code class=&quot;language-text&quot;&gt;Background&lt;/code&gt; where it can remain cached in its model (seen above)&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;{staging : Dict String Asset.Preview}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;So in the event a user accidentally refreshes, or navigates away from the page, the user doesn’t have to reselect new images, and they can just hit save to upload the replacements.When a user hits ‘save’, Background requests a signed url from the api for a PUT request for the S3 bucket where images are stored. The image is uploaded, and progress events are sent to the content script to increment a progress bar on the image.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;Popup&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;Background&lt;/code&gt; are essentially independent elm applications that send messages out through &lt;em&gt;elm&lt;/em&gt; ports to the chrome runtime’s ports.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;src/extension/content/content.js&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The content script first injects some css to style the buttons and progress bars for new images. The script finds all the images by using the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors&quot;&gt;attribute selector&lt;/a&gt; &lt;code class=&quot;language-text&quot;&gt;&amp;#39;[src*=&amp;quot;imgix.net&amp;quot;]&amp;#39;&lt;/code&gt;. This selector finds all images stored in Vertol’s cdn provider. After finding the images it adds drag and drop event handlers to them to handle showing previews and uploading new replacements.
+&lt;code class=&quot;language-text&quot;&gt;content.js&lt;/code&gt; also uses &lt;code class=&quot;language-text&quot;&gt;chrome.extension.sendMessage&lt;/code&gt; to send messages to &lt;code class=&quot;language-text&quot;&gt;chrome.runtime.onMessage.addListener&lt;/code&gt; in &lt;a href=&quot;https://gist.github.com/imdwit/e9ac44f6341460ee24262c801399254c&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;bg.js&lt;/code&gt;&lt;/a&gt;. For instance there’s an &lt;code class=&quot;language-text&quot;&gt;addFileToStaging&lt;/code&gt; message that puts the base64 encoded image into &lt;code class=&quot;language-text&quot;&gt;Background.elm&lt;/code&gt;’s staging &lt;code class=&quot;language-text&quot;&gt;Dict&lt;/code&gt;.
+When a new image is selected the image is replaced inline with a base64 encoded version, but not yet saved. The user has the option to undo selecting that image, which puts the image back how they found it. Or they can hit ‘save’ which dispatches an &lt;code class=&quot;language-text&quot;&gt;upload&lt;/code&gt; event to &lt;code class=&quot;language-text&quot;&gt;bg.js&lt;/code&gt; which then uploads the image to S3. Content then receives progress events to update the progress bar’s value to indicate to the user something is happening.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Thanks for checking out this quick tour of my chrome extension. I learned a ton making it and hope to improve upon it in the near future. If you have any questions feel free to reach out to &lt;a href=&quot;https://twitter.com/iamdwit&quot;&gt;me on twitter.&lt;/a&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
