@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[TorchShip logs]]></title><description><![CDATA[Bootstrapping SAAS and such solo.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>RSS for Node</generator><lastBuildDate>Sat, 24 Aug 2019 00:40:37 GMT</lastBuildDate><item><title><![CDATA[How I built a Chrome extension with Elm]]></title><description><![CDATA[First let’s start with a bit of background. I got a job as an Elm developer winter 2018. At the time I didn’t know Elm so I had to learn in…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/elm-chrome-ext/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/elm-chrome-ext/</guid><pubDate>Thu, 22 Aug 2019 21:28:24 GMT</pubDate><content:encoded>&lt;p&gt;First let’s start with a bit of background.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[TorchShip logs]]></title><description><![CDATA[Bootstrapping SAAS and such solo.]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>RSS for Node</generator><lastBuildDate>Tue, 27 Aug 2019 05:56:19 GMT</lastBuildDate><item><title><![CDATA[How I built a Chrome extension with Elm]]></title><description><![CDATA[First let’s start with a bit of background. I got a job as an Elm developer winter 2018. At the time I didn’t know Elm so I had to learn in…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/elm-chrome-ext/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/elm-chrome-ext/</guid><pubDate>Thu, 22 Aug 2019 21:28:24 GMT</pubDate><content:encoded>&lt;p&gt;First let’s start with a bit of background.&lt;/p&gt;
 &lt;p&gt;I got a job as an Elm developer winter 2018.&lt;/p&gt;
 &lt;p&gt;At the time I didn’t know Elm so I had to learn in a hurry.&lt;/p&gt;
 &lt;p&gt;I had the idea for a chrome extension than can update the images I use on a website or app. But to go along with the chrome extension I had to build a whole dashboard (which I’ll write more about that later).&lt;/p&gt;
@@ -39,25 +39,25 @@ I learned how to build an Elm application by reverse engineering our app at work
     &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;The &lt;code class=&quot;language-text&quot;&gt;Main.elm&lt;/code&gt; you see is for the dashboard application.&lt;/p&gt;
 &lt;p&gt;The source code for the chrome extension shares code with Vertol’s dashboard. So to make things easy I just have the whole source for the extension inside the &lt;code class=&quot;language-text&quot;&gt;src&lt;/code&gt; folder, &lt;code class=&quot;language-text&quot;&gt;manifest.json&lt;/code&gt; and all, and I just simply &lt;code class=&quot;language-text&quot;&gt;gitignore&lt;/code&gt; the compiled output.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;package.json
-&amp;quot;build-ext-prod&amp;quot;: &amp;quot;webpack --config config/webpack.ext.js &amp;amp;&amp;amp; npm run zip-ext&amp;quot;,
-&amp;quot;zip-ext&amp;quot;: &amp;quot;zip -r vertol.zip src/extension&amp;quot;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;// webpack.ext.js config 
- entry: {
-    popup: paths.extPopupJs,
-    bg: paths.extBGJS,
-    content: paths.extContentJS,
-  },
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;package.json
+&lt;span class=&quot;token string&quot;&gt;&quot;build-ext-prod&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;webpack --config config/webpack.ext.js &amp;amp;&amp;amp; npm run zip-ext&quot;&lt;/span&gt;,
+&lt;span class=&quot;token string&quot;&gt;&quot;zip-ext&quot;&lt;/span&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;zip -r vertol.zip src/extension&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;json&quot;&gt;&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// webpack.ext.js config &lt;/span&gt;
+ entry&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    popup&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; paths.extPopupJs&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    bg&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; paths.extBGJS&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    content&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; paths.extContentJS&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
 
-  output: {
-    pathinfo: true,
-    // The build folder.
-    path: paths.appSrc,
-    filename: &amp;#39;extension/[name]/[name].bundle.js&amp;#39;,
-    publicPath: publicPath,
-    chunkFilename: &amp;#39;[name].bundle.js&amp;#39;,
+  output&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    pathinfo&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// The build folder.&lt;/span&gt;
+    path&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; paths.appSrc&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    filename&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &apos;extension/&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;/&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;.bundle.js&apos;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    publicPath&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; publicPath&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    chunkFilename&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &apos;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;.bundle.js&apos;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
     ...more config
-  },&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Then a build script &lt;code class=&quot;language-text&quot;&gt;npm run build-ext-prod&lt;/code&gt; packages it so it’s ready to load in a browser.&lt;/p&gt;
 &lt;p&gt;I’m including the source code as a gist because the whole source is private for now. &lt;/p&gt;
 &lt;h4&gt;How the extension is built:&lt;/h4&gt;
@@ -99,13 +99,13 @@ I learned how to build an Elm application by reverse engineering our app at work
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;Background.elm&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;bg.js&lt;/code&gt; are the brain, it persists the state for Popup.model, and handles the xhr requests. Passing messages back and forth between the popup, as well as the content scripts. Im taking advantage of Elm’s &lt;code class=&quot;language-text&quot;&gt;Platform.worker&lt;/code&gt; since there’s no DOM.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;-- Background model
-type alias Model =
-    { popUp : PopUp.Model
-    , hostname : String
-    , projects : List Project
-    , staging : Dict String Asset.Preview
-    }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;elm&quot;&gt;&lt;pre class=&quot;language-elm&quot;&gt;&lt;code class=&quot;language-elm&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;-- Background model&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;alias&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Model&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;popUp&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;PopUp.Model&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;hostname&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;String&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;projects&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;List&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Project&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token hvariable&quot;&gt;staging&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Dict&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Asset.Preview&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a href=&quot;https://gist.github.com/imdwit/afc9c0bd03254cb1605db6c61e5652a7&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;src/Popup.elm&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
