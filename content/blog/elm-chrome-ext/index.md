@@ -30,7 +30,7 @@ The `Main.elm` you see is for the dashboard application.
 
 The source code for the chrome extension shares code with Vertol’s dashboard. So to make things easy I just have the whole source for the extension inside the `src` folder, `manifest.json` and all, and I just simply `gitignore` the compiled output.
 
-```
+```bash
 package.json
 "build-ext-prod": "webpack --config config/webpack.ext.js && npm run zip-ext",
 "zip-ext": "zip -r vertol.zip src/extension"
@@ -38,7 +38,7 @@ package.json
 
 
 
-```
+```json
 // webpack.ext.js config 
  entry: {
     popup: paths.extPopupJs,
@@ -88,7 +88,7 @@ I'm including the source code as a gist because the whole source is private for 
 
   `Background.elm` and `bg.js` are the brain, it persists the state for Popup.model, and handles the xhr requests. Passing messages back and forth between the popup, as well as the content scripts. Im taking advantage of Elm's `Platform.worker` since there's no DOM.
 
-```
+```elm
 -- Background model
 type alias Model =
     { popUp : PopUp.Model

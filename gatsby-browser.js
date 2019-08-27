@@ -1,3 +1,3 @@
 // custom typefaces
-import "typeface-montserrat"
-import "typeface-merriweather"
+import "./src/style/index.css"
+import "prismjs/themes/prism-solarizedlight.css"
