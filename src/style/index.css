@@ -3,3 +3,37 @@
 @tailwind components;
 
 @tailwind utilities;
+
+a[href*="https"] {
+  text-decoration: underline;
+}
+
+a[href*="https"] code {
+  color: blueviolet;
+}
+
+a[href*="https"]::after {
+  content: '«';
+  position: absolute;
+  transform: rotate(135deg);
+  width: 0.75em;
+  height: 0.75em;
+  color: blueviolet;
+}
+
+
+a[href*="https"]::before {
+  content: attr(href);
+
+  position: absolute;
+  opacity: 0;
+  background: white;
+  padding: 2px 4px;
+  text-decoration: underline;
+  color: blueviolet;
+
+}
+
+a[href*="https"]:hover::before {
+  opacity: 1;
+}
