@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 a[href*="https"] {
+  position: relative;
   text-decoration: underline;
 }
 
@@ -26,12 +27,18 @@ a[href*="https"]::before {
   content: attr(href);
 
   position: absolute;
+  top: 100%;
+
   opacity: 0;
   background: white;
-  padding: 2px 4px;
+  padding: 3px 5px;
+  border-radius: 4px;
+  box-shadow: 2px 2px 4px black;
+  border-left: 1px solid #eee;
+
   text-decoration: underline;
   color: blueviolet;
-
+  z-index: 1;
 }
 
 a[href*="https"]:hover::before {
